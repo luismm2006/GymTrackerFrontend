@@ -3,7 +3,6 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import type { RegisterInputs } from "../../types/auth";
 import { postRegister } from "../../services/authService";
-import "./register.css";
 
 export default function Register() {
 

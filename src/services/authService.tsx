@@ -26,5 +26,6 @@ export async function postLogin(userLogin : LoginInputs){
         const errorText = await res.json();
         throw new Error(errorText.message[0]);
     }
+    
     return res.json()
 }
