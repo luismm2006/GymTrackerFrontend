@@ -15,5 +15,11 @@ export  interface RoutineDetails {
         exerciseName: string;
         muscleGroup: string;
         order: number;
+        series:
+            {
+                id: number;
+                weight: number;
+                reps: number;
+            }[];
     }[];
 }

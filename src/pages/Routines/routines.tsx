@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
-import type Routine from "../../types/routines";
-import { getRoutines } from "../../services/rutinesService";
+import { getRoutines } from "../../services/routinesService";
 import RoutinesItem from "./components/routinesItem";
+import type { Routine } from "../../types/routines";
 
 export default function Routines() {
     const { token } = useAuth();
@@ -11,6 +11,7 @@ export default function Routines() {
     const [filteredRoutines, setFilteredRoutines] = useState<Routine[]>([]);
 
     useEffect(() => {
+        if (!token) return;
         const fetch = async () => {
             const routinesData = await getRoutines(token!);
             setRoutines(routinesData);

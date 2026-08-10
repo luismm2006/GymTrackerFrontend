@@ -49,3 +49,19 @@ export async function getRoutineById(token: string, id: number) {
 
     return res.json();
 }
+
+export async function addSeriesToExercise(token: string, routineId: number, exerciseId: number, weight: number, reps: number) {
+    const res = await fetch(Url + "templates/" + routineId + "/exercises/" + exerciseId + "/series", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({series: [{weight, reps}]})
+    });
+    if(!res.ok){
+        const errorText = await res.json();
+        throw new Error(errorText.message[0]);
+    }
+    return res.json();
+}

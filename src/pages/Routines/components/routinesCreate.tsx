@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
-import { createRoutine } from "../../../services/rutinesService";
+import { createRoutine } from "../../../services/routinesService";
 import * as React from "react";
 
 export default function RoutinesCreate() {
