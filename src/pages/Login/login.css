@@ -1,18 +1,3 @@
-/* =============================================
-   GYMTRACKER — Login (versión final)
-   ============================================= */
-
-:root {
-  --gt-black:       #000000;
-  --gt-surface:     #111111;
-  --gt-border:      #1E1E1E;
-  --gt-green:       #39FF14;
-  --gt-green-dim:   #2BCC0F;
-  --gt-green-muted: rgba(57, 255, 20, 0.08);
-  --gt-text:        #F0F0F0;
-  --gt-muted:       #888888;
-  --gt-error:       #FF4D4D;
-}
 
 body {
   background: var(--gt-black);

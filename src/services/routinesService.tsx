@@ -65,3 +65,34 @@ export async function addSeriesToExercise(token: string, routineId: number, exer
     }
     return res.json();
 }
+
+export async function editSeries(token: string, routineId: number, exerciseId: number, seriesId: number, weight: number, reps: number) {
+    const res = await fetch(Url + "templates/" + routineId + "/exercises/" + exerciseId + "/series/" + seriesId, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({weight, reps})
+    });
+    if(!res.ok){
+        const errorText = await res.json();
+        throw new Error(errorText.message[0]);
+    }
+    return res.json();
+}
+
+export async function deleteSeries(token: string, routineId: number, exerciseId: number, seriesId: number) {
+    const res = await fetch(Url + "templates/" + routineId + "/exercises/" + exerciseId + "/series/" + seriesId, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+    });
+    if(!res.ok){
+        const errorText = await res.json();
+        throw new Error(errorText.message[0]);
+    }
+    return res.json();
+}
