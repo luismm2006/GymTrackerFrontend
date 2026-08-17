@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { addSeriesToExercise, deleteSeries, editSeries, getRoutineById } from "../../../services/routinesService";
 import { useAuth } from "../../../context/AuthContext";
 import type { RoutineDetails } from "../../../types/routines";
@@ -15,6 +15,8 @@ export default function RoutineDetails() {
     const [action, setAction] = useState
     <{type: "add" | "edit" | "delete" | null, exerciseId: number | null, seriesId: number | null, initialWeight: number | string | null, initialReps: number | string | null}>
     ({type: null, exerciseId: null, seriesId: null, initialWeight: 0, initialReps: 0});
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!token) return;
@@ -129,7 +131,7 @@ export default function RoutineDetails() {
                     </li>
                 ))}
             </ul>
-            <button>Añadir Ejercicio</button>
+            <button onClick={()=> navigate("/exercises/" + routine.id)} >Añadir Ejercicio</button>
             <button onClick={() => window.history.back()}>Volver</button>
         </div>
     );

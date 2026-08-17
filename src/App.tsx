@@ -7,6 +7,7 @@ import Home from './pages/Home/Home'
 import RoutinesCreate from './pages/Routines/components/routinesCreate'
 import Routines from './pages/Routines/routines'
 import RoutineDetails from './pages/Routines/components/routinesDetails';
+import ExercisesList from './pages/Exercises/exercisesList'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/routines" element={<Routines />} />
           <Route path="/routines/create" element={<RoutinesCreate />} />
           <Route path="/routines/:id" element={<RoutineDetails />} />
+          <Route path='/exercises/:id' element={<ExercisesList />}></Route>
         </Routes>
       </AuthProvider>
      </BrowserRouter>

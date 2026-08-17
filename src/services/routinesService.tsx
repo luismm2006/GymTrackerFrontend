@@ -96,3 +96,20 @@ export async function deleteSeries(token: string, routineId: number, exerciseId:
     }
     return res.json();
 }
+
+export async function addExercises(token : string, templateId : number, exerciseId : number){
+    const res = await fetch(Url + templateId + "/exercises", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({templateId, exerciseId})
+    });
+
+    if(!res.ok){
+        const errorText = await res.json();
+        throw new Error(errorText.message[0]);
+    }
+    return res.json();
+}
