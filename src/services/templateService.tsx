@@ -2,7 +2,7 @@
 const Url = "http://localhost:8080/api/"
 
 
-export async function getRoutines(token : string){
+export async function getTemplate(token : string){
     const res = await fetch(Url + "templates", {
         method: "GET",
         headers: { 
@@ -17,7 +17,7 @@ export async function getRoutines(token : string){
     return res.json()
 }
 
-export async function createRoutine(token: string, name: string) {
+export async function createTemplate(token: string, name: string) {
     const res = await fetch(Url + "createTemplate", {
         method : "POST",
         headers : {
@@ -33,7 +33,7 @@ export async function createRoutine(token: string, name: string) {
     return res.json()
 }
 
-export async function getRoutineById(token: string, id: number) {
+export async function getTemplateById(token: string, id: number) {
     const res = await fetch(Url + "templates/" + id, {
         method: "GET",
         headers: {

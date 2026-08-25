@@ -1,20 +1,20 @@
 import { useState } from "react";
 
-interface AddFormProps {
+interface EditFormProps {
   exerciseId: number;
-  routineId: number;
+  templateId: number;
   initialWeight: number | string | null;
   initialReps: number | string | null;
-  onSave: (exerciseId: number, routineId: number, weight: number, reps: number) => void;
+  onSave: (exerciseId: number, templateId: number, weight: number, reps: number) => void;
   onCancel: () => void;
 }
 
-export default function AddForm({ onSave, onCancel, initialWeight, initialReps, exerciseId, routineId }: AddFormProps) {
+export default function EditForm({ onSave, onCancel, initialWeight, initialReps, exerciseId, templateId }: EditFormProps) {
     const [weight, setWeight] = useState(Number(initialWeight ?? 0)) ;
     const [reps, setReps] = useState(Number(initialReps ?? 0)); 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        onSave(exerciseId, routineId, weight, reps);
+        onSave(exerciseId, templateId, weight, reps);
     }
     return (
         <div>

@@ -12,7 +12,7 @@ export default function Home() {
             <nav>
                 <ul>
                     <li><Link to="/home">Inicio</Link></li>
-                    <li><Link to="/routines">Rutinas</Link></li>
+                    <li><Link to="/template">Plantillas de ejercicios</Link></li>
                     <li><Link to="/profile">Perfil</Link></li>
                     {!token && <li><Link to="/login">Iniciar sesión</Link></li>}
                     {!token && <li><Link to="/register">Registrarse</Link></li>}

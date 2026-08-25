@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
-import { addExercises } from "../../../services/routinesService";
+import { addExercises } from "../../../services/templateService";
 import type { ExercisesResponse } from "../../../types/exercises";
 
 interface Props {
@@ -14,7 +14,7 @@ export default function ExercisesItem({ exercises, templateId }: Props) {
     const handleAddExercise = async () => {
         addExercises(token!, templateId, exercises.id);
         alert("Añadido correctamente!!")
-        navigate("/routines");
+        navigate("/template");
     }
     return (
         <div>

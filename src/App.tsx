@@ -4,10 +4,10 @@ import { AuthProvider } from './context/AuthContext'
 import Login from './pages/Login/login'
 import Register from './pages/Register/register'
 import Home from './pages/Home/Home'
-import RoutinesCreate from './pages/Routines/components/routinesCreate'
-import Routines from './pages/Routines/routines'
-import RoutineDetails from './pages/Routines/components/routinesDetails';
 import ExercisesList from './pages/Exercises/exercisesList'
+import Template from './pages/Template/template';
+import TemplateCreate from './pages/Template/components/templateCreate'
+import TemplateDetails from './pages/Template/components/templateDetails/templateDetails'
 
 function App() {
 
@@ -19,9 +19,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/routines" element={<Routines />} />
-          <Route path="/routines/create" element={<RoutinesCreate />} />
-          <Route path="/routines/:id" element={<RoutineDetails />} />
+          <Route path="/template" element={<Template />} />
+          <Route path="/template/create" element={<TemplateCreate />} />
+          <Route path="/template/:id" element={<TemplateDetails />} />
           <Route path='/exercises/:id' element={<ExercisesList />}></Route>
         </Routes>
       </AuthProvider>

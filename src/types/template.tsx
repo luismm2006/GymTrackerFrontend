@@ -1,10 +1,10 @@
-export  interface Routine {
+export  interface Template {
     id: number;
     name: string;
     official: boolean;
 }
 
-export  interface RoutineDetails {
+export  interface TemplateDetails {
     id: number;
     name: string;
     official: boolean;

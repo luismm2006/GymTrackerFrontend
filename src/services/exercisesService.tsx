@@ -32,3 +32,21 @@ export async function getAllMuscleGroup(token: string) {
     }
     return res.json()
 }
+
+export async function deleteExercise(token: string, exerciseId: number, routineId: number){
+    const res = await fetch(Url + "templates/" + routineId + "/exercises/" + exerciseId, 
+        {
+            method : "DELETE",
+            headers : {
+                    "Content-Type" : "application/json",
+                    "Authorization" : "Bearer " + token
+                },
+                
+        }
+    )
+    if(!res.ok){
+        const errorText = await res.json();
+        throw new Error(errorText.message[0]);
+    }
+    return res.json()
+}
