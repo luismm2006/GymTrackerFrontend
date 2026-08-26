@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { postLogin } from "../../services/authService";
 import "./login.css";
 import gymLogo from "../../assets/GymTracker.png";
+
 export default function Login() {
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm<LoginInputs>();
@@ -30,69 +31,62 @@ export default function Login() {
     };
 
     return (
-            <div className="auth-wrapper">
-                {/* Panel izquierdo */}
-                <div className="auth-left">
-                    <h1>Inicio de sesión</h1>
+        <div className="gt-auth">
 
-                    <form onSubmit={handleSubmit(onSubmit)}>
+            {/* Panel izquierdo */}
+            <div className="gt-auth__form-panel">
+                <div className="gt-auth__form-inner">
+                    <h1 className="gt-auth__title">Inicio de sesión</h1>
 
-                        <div className="field-group">
-                            <label>Nombre de usuario</label>
+                    <form className="gt-form" onSubmit={handleSubmit(onSubmit)}>
+
+                        <div className="gt-form__group">
+                            <label className="gt-form__label">Nombre de usuario</label>
                             <input
+                                className="gt-form__input"
                                 type="text"
                                 {...register("username", { required: "El usuario es obligatorio" })}
                             />
-                            {errors.username && <p className="field-error">{errors.username.message}</p>}
+                            {errors.username && <p className="gt-form__error">{errors.username.message}</p>}
                         </div>
 
-                        <div className="field-group">
-                            <label>Contraseña</label>
+                        <div className="gt-form__group">
+                            <label className="gt-form__label">Contraseña</label>
                             <input
+                                className="gt-form__input"
                                 type="password"
                                 {...register("password", { required: "La contraseña es obligatoria" })}
                             />
-                            {errors.password && <p className="field-error">{errors.password.message}</p>}
+                            {errors.password && <p className="gt-form__error">{errors.password.message}</p>}
                         </div>
 
-                        <Link to="/forgot-password" className="forgot-link">
+                        <Link to="/forgot-password" className="gt-form__forgot-link">
                             ¿Has olvidado tu contraseña?
                         </Link>
 
-                        {error && <p className="field-error">{error}</p>}
+                        {error && <p className="gt-form__error gt-form__error--global">{error}</p>}
 
-                        <button type="submit">Iniciar sesión</button>
+                        <button className="gt-form__submit" type="submit">Iniciar sesión</button>
 
-                        <div className="register-line">
+                        <div className="gt-form__register-line">
                             ¿No tienes una cuenta? <Link to="/register">Regístrate</Link>
                         </div>
 
                     </form>
                 </div>
+            </div>
 
-                {/* Panel derecho */}
-                <div className="auth-right">
+            {/* Divisor */}
+            <div className="gt-auth__divider" />
 
-                    {/* Barras superiores */}
-                    <div className="slash-top">
-                        <span className="slash slash-1"></span>
-                        <span className="slash slash-2"></span>
-                    </div>
-
-                    {/* Logo */}
-                    <div className="auth-logo-block">
-                        <img src={gymLogo} alt="GymTracker logo" className="auth-logo-img" />
-                        <span className="auth-logo-name">GymTracker</span>
-                    </div>
-
-                    {/* Barras inferiores */}
-                    <div className="slash-bottom">
-                        <span className="slash slash-3"></span>
-                        <span className="slash slash-4"></span>
-                    </div>
-
+            {/* Panel derecho */}
+            <div className="gt-auth__brand-panel">
+                <div className="gt-brand__logo-block">
+                    <img src={gymLogo} alt="GymTracker logo" className="gt-brand__logo-img" />
+                    <span className="gt-brand__logo-name">GymTracker</span>
                 </div>
             </div>
 
+        </div>
     );
 }
