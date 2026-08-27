@@ -30,30 +30,39 @@ export default function Register() {
     const password = watch("password");
 
     return (
-        <div className="gt-auth">
+        <div className="gt-register-auth">
 
-            {/* Panel izquierdo */}
-            <div className="gt-auth__form-panel">
-                <div className="gt-auth__form-inner">
-                    <h1 className="gt-auth__title">Registrarse</h1>
+            {/* LOGO DERECHA / ARRIBA EN MÓVIL */}
+            <div className="gt-register-brand-panel">
+                <div className="gt-register-logo-block">
+                    <img src={gymLogo} alt="GymTracker logo" className="gt-register-logo-img" />
+                </div>
+            </div>
 
-                    <form className="gt-form" onSubmit={handleSubmit(onSubmit)}>
+            {/* DIVISOR */}
+            <div className="gt-register-divider" />
+            {/* FORMULARIO IZQUIERDA / ARRIBA EN MÓVIL */}
+            <div className="gt-register-form-panel">
+                <div className="gt-register-form-inner">
+                    <h1 className="gt-register-title">Registrarse</h1>
 
-                        <div className="gt-form__group">
-                            <label className="gt-form__label">Usuario</label>
+                    <form className="gt-register-form" onSubmit={handleSubmit(onSubmit)}>
+
+                        <div className="gt-register-form-group">
+                            <label className="gt-register-form-label">Usuario</label>
                             <input
-                                className="gt-form__input"
+                                className="gt-register-form-input"
                                 type="text"
                                 placeholder="Introduce tu usuario"
                                 {...register("username", { required: "El usuario es obligatorio" })}
                             />
-                            {errors.username && <p className="gt-form__error">{errors.username.message}</p>}
+                            {errors.username && <p className="gt-register-form-error">{errors.username.message}</p>}
                         </div>
 
-                        <div className="gt-form__group">
-                            <label className="gt-form__label">Correo electrónico</label>
+                        <div className="gt-register-form-group">
+                            <label className="gt-register-form-label">Correo electrónico</label>
                             <input
-                                className="gt-form__input"
+                                className="gt-register-form-input"
                                 type="email"
                                 placeholder="Introduce tu correo"
                                 {...register("email", {
@@ -64,26 +73,24 @@ export default function Register() {
                                     }
                                 })}
                             />
-                            {errors.email && <p className="gt-form__error">{errors.email.message}</p>}
+                            {errors.email && <p className="gt-register-form-error">{errors.email.message}</p>}
                         </div>
 
-                        <div className="gt-form__group">
-                            <label className="gt-form__label">Contraseña</label>
+                        <div className="gt-register-form-group">
+                            <label className="gt-register-form-label">Contraseña</label>
                             <input
-                                className="gt-form__input"
+                                className="gt-register-form-input"
                                 type="password"
                                 placeholder="Introduce tu contraseña"
-                                {...register("password", {
-                                    required: "La contraseña es obligatoria",
-                                })}
+                                {...register("password", { required: "La contraseña es obligatoria" })}
                             />
-                            {errors.password && <p className="gt-form__error">{errors.password.message}</p>}
+                            {errors.password && <p className="gt-register-form-error">{errors.password.message}</p>}
                         </div>
 
-                        <div className="gt-form__group">
-                            <label className="gt-form__label">Repetir contraseña</label>
+                        <div className="gt-register-form-group">
+                            <label className="gt-register-form-label">Repetir contraseña</label>
                             <input
-                                className="gt-form__input"
+                                className="gt-register-form-input"
                                 type="password"
                                 placeholder="Introduce de nuevo tu contraseña"
                                 {...register("repeatPassword", {
@@ -92,18 +99,18 @@ export default function Register() {
                                         value === password || "Las contraseñas no coinciden"
                                 })}
                             />
-                            {errors.repeatPassword && <p className="gt-form__error">{errors.repeatPassword.message}</p>}
+                            {errors.repeatPassword && <p className="gt-register-form-error">{errors.repeatPassword.message}</p>}
                         </div>
 
-                        <Link to="/login" className="gt-form__forgot-link">
+                        <Link to="/login" className="gt-register-form-forgot">
                             ¿Ya tienes una cuenta?
                         </Link>
 
-                        {error && <p className="gt-form__error gt-form__error--global">{error}</p>}
+                        {error && <p className="gt-register-form-error gt-register-form-error-global">{error}</p>}
 
-                        <button className="gt-form__submit" type="submit">Registrarse</button>
+                        <button className="gt-register-form-submit" type="submit">Registrarse</button>
 
-                        <div className="gt-form__register-line">
+                        <div className="gt-register-form-register">
                             <Link to="/home">Volver</Link>
                         </div>
 
@@ -111,17 +118,8 @@ export default function Register() {
                 </div>
             </div>
 
-            {/* Divisor */}
-            <div className="gt-auth__divider" />
-
-            {/* Panel derecho */}
-            <div className="gt-auth__brand-panel">
-                <div className="gt-brand__logo-block">
-                    <img src={gymLogo} alt="GymTracker logo" className="gt-brand__logo-img" />
-                    <span className="gt-brand__logo-name">GymTracker</span>
-                </div>
-            </div>
 
         </div>
+
     );
 }

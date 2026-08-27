@@ -1,5 +1,5 @@
 /* ============================================
-   GYMTRACKER — DESIGN TOKENS
+   LOGIN — DESIGN TOKENS
    ============================================ */
 :root {
   --gt-black: #000000;
@@ -28,9 +28,9 @@ html, body, #root {
 }
 
 /* ============================================
-   LAYOUT
+   DESKTOP LAYOUT
    ============================================ */
-.gt-auth {
+.gt-login-auth {
   display: flex;
   height: 100vh;
   width: 100vw;
@@ -39,7 +39,7 @@ html, body, #root {
   background-color: var(--gt-black);
 }
 
-.gt-auth__divider {
+.gt-login-divider {
   width: 1px;
   height: 100%;
   background: linear-gradient(
@@ -52,8 +52,8 @@ html, body, #root {
   flex-shrink: 0;
 }
 
-/* ---------- Panel izquierdo (formulario) ---------- */
-.gt-auth__form-panel {
+/* Panel formulario */
+.gt-login-form-panel {
   flex: 0.85 1 0;
   height: 100%;
   display: flex;
@@ -61,45 +61,43 @@ html, body, #root {
   align-items: center;
   background-color: var(--gt-charcoal);
   padding: 40px;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
-.gt-auth__form-inner {
+.gt-login-form-inner {
   width: 100%;
   max-width: 340px;
 }
 
-.gt-auth__title {
+.gt-login-title {
   color: var(--gt-text);
   font-size: clamp(22px, 2.2vw, 26px);
   font-weight: 600;
-  letter-spacing: -0.01em;
-  margin: 0 0 32px;
+  margin-bottom: 32px;
   text-align: center;
 }
 
-/* ---------- Formulario ---------- */
-.gt-form {
+/* Formulario */
+.gt-login-form {
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
-.gt-form__group {
+.gt-login-form-group {
   display: flex;
   flex-direction: column;
   gap: 7px;
 }
 
-.gt-form__label {
+.gt-login-form-label {
   font-size: 11.5px;
   font-weight: 600;
   color: var(--gt-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
 }
 
-.gt-form__input {
+.gt-login-form-input {
   height: 50px;
   padding: 0 16px;
   border-radius: var(--gt-radius-sm);
@@ -107,51 +105,29 @@ html, body, #root {
   background-color: var(--gt-charcoal-elevated);
   color: var(--gt-text);
   font-size: 15px;
-  outline: none;
-  transition: border-color var(--gt-transition), background-color var(--gt-transition);
 }
 
-.gt-form__input::placeholder {
-  color: #565a51;
-}
-
-.gt-form__input:hover {
-  border-color: #3a3c35;
-}
-
-.gt-form__input:focus {
-  border-color: var(--gt-green);
-  background-color: #1f2119;
-}
-
-.gt-form__forgot-link {
+.gt-login-form-forgot {
   align-self: center;
   font-size: 12.5px;
   color: var(--gt-text-muted);
   text-decoration: none;
-  margin-top: -2px;
-  transition: color var(--gt-transition);
 }
 
-.gt-form__forgot-link:hover {
-  color: var(--gt-text);
-}
-
-.gt-form__error {
+.gt-login-form-error {
   font-size: 12.5px;
   color: var(--gt-danger);
-  margin: 0;
 }
 
-.gt-form__error--global {
+.gt-login-form-error-global {
   text-align: center;
   background-color: rgba(255, 92, 102, 0.08);
   border: 1px solid rgba(255, 92, 102, 0.2);
-  border-radius: var(--gt-radius-sm);
   padding: 9px 12px;
+  border-radius: var(--gt-radius-sm);
 }
 
-.gt-form__submit {
+.gt-login-form-submit {
   height: 50px;
   border: none;
   border-radius: var(--gt-radius-sm);
@@ -160,38 +136,17 @@ html, body, #root {
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  margin-top: 6px;
-  transition: background-color var(--gt-transition), transform 100ms ease;
 }
 
-.gt-form__submit:hover {
-  background-color: var(--gt-green-dark);
-}
-
-.gt-form__submit:active {
-  transform: scale(0.98);
-}
-
-.gt-form__register-line {
+.gt-login-form-register {
   text-align: center;
   font-size: 13.5px;
   color: var(--gt-text-muted);
-  margin-top: 4px;
 }
 
-.gt-form__register-line a {
-  color: var(--gt-green);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.gt-form__register-line a:hover {
-  color: var(--gt-green-dark);
-}
-
-/* ---------- Panel derecho (marca) ---------- */
-.gt-auth__brand-panel {
-  flex: 1.15 1 0;
+/* Panel logo */
+.gt-login-brand-panel {
+  flex: 0.9 ;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -199,24 +154,84 @@ html, body, #root {
   background-color: var(--gt-black);
 }
 
-.gt-brand__logo-block {
+.gt-login-logo-block {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
 }
 
-.gt-brand__logo-img {
-  width: clamp(160px, 16vw, 240px);
-  height: auto;
-  object-fit: contain;
+.gt-login-logo-img {
+  width: clamp(560px, 16vw, 240px);
 }
 
-.gt-brand__logo-name {
+.gt-login-logo-name {
   color: var(--gt-text);
   font-size: 22px;
   font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
 }
 
+/* ============================================
+   MOBILE — FORMULARIO GIGANTE / LOGO PEQUEÑO
+   ============================================ */
+@media (max-width: 900px) {
+
+  /* CONTENEDOR PRINCIPAL */
+  .gt-login-auth {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden; /* sin scroll */
+  }
+
+  /* LOGO ARRIBA (10–12%) */
+  .gt-login-brand-panel {
+    flex: none !important; /* anula flex del desktop */
+    height: 30vh;          /* logo pequeño arriba */
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid var(--gt-line);
+  }
+
+  .gt-login-logo-img {
+    height: 28vh;  /* tamaño perfecto */
+    width: auto;
+  }
+
+
+  /* FORMULARIO ABAJO (88–90%) */
+  .gt-login-form-panel {
+    flex: none !important; /* anula flex del desktop */
+    height: 80vh;          /* formulario gigante */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* sin scroll */
+    padding-bottom: 200px;
+  }
+
+  .gt-login-form-inner {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  /* OCULTAR DIVISOR */
+  .gt-login-divider {
+    display: none;
+  }
+
+  /* Inputs más cómodos */
+  .gt-login-form-input {
+    height: 52px;
+    font-size: 16px;
+  }
+
+  .gt-login-form-submit {
+    height: 52px;
+    font-size: 16px;
+  }
+}

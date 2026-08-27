@@ -31,59 +31,58 @@ export default function Login() {
     };
 
     return (
-        <div className="gt-auth">
+        <div className="gt-login-auth">
 
-            {/* Panel izquierdo */}
-            <div className="gt-auth__form-panel">
-                <div className="gt-auth__form-inner">
-                    <h1 className="gt-auth__title">Inicio de sesión</h1>
+            {/* LOGO ARRIBA */}
+            <div className="gt-login-brand-panel">
+                <div className="gt-login-logo-block">
+                    <img src={gymLogo} alt="GymTracker logo" className="gt-login-logo-img" />
+                </div>
+            </div>
 
-                    <form className="gt-form" onSubmit={handleSubmit(onSubmit)}>
+            {/* DIVISOR (solo desktop) */}
+            <div className="gt-login-divider" />
 
-                        <div className="gt-form__group">
-                            <label className="gt-form__label">Nombre de usuario</label>
+            {/* FORMULARIO ABAJO */}
+            <div className="gt-login-form-panel">
+                <div className="gt-login-form-inner">
+                    <h1 className="gt-login-title">Inicio de sesión</h1>
+
+                    <form className="gt-login-form" onSubmit={handleSubmit(onSubmit)}>
+
+                        <div className="gt-login-form-group">
+                            <label className="gt-login-form-label">Nombre de usuario</label>
                             <input
-                                className="gt-form__input"
+                                className="gt-login-form-input"
                                 type="text"
                                 {...register("username", { required: "El usuario es obligatorio" })}
                             />
-                            {errors.username && <p className="gt-form__error">{errors.username.message}</p>}
+                            {errors.username && <p className="gt-login-form-error">{errors.username.message}</p>}
                         </div>
 
-                        <div className="gt-form__group">
-                            <label className="gt-form__label">Contraseña</label>
+                        <div className="gt-login-form-group">
+                            <label className="gt-login-form-label">Contraseña</label>
                             <input
-                                className="gt-form__input"
+                                className="gt-login-form-input"
                                 type="password"
                                 {...register("password", { required: "La contraseña es obligatoria" })}
                             />
-                            {errors.password && <p className="gt-form__error">{errors.password.message}</p>}
+                            {errors.password && <p className="gt-login-form-error">{errors.password.message}</p>}
                         </div>
 
-                        <Link to="/forgot-password" className="gt-form__forgot-link">
+                        <Link to="/forgot-password" className="gt-login-form-forgot">
                             ¿Has olvidado tu contraseña?
                         </Link>
 
-                        {error && <p className="gt-form__error gt-form__error--global">{error}</p>}
+                        {error && <p className="gt-login-form-error gt-login-form-error-global">{error}</p>}
 
-                        <button className="gt-form__submit" type="submit">Iniciar sesión</button>
+                        <button className="gt-login-form-submit" type="submit">Iniciar sesión</button>
 
-                        <div className="gt-form__register-line">
+                        <div className="gt-login-form-register">
                             ¿No tienes una cuenta? <Link to="/register">Regístrate</Link>
                         </div>
 
                     </form>
-                </div>
-            </div>
-
-            {/* Divisor */}
-            <div className="gt-auth__divider" />
-
-            {/* Panel derecho */}
-            <div className="gt-auth__brand-panel">
-                <div className="gt-brand__logo-block">
-                    <img src={gymLogo} alt="GymTracker logo" className="gt-brand__logo-img" />
-                    <span className="gt-brand__logo-name">GymTracker</span>
                 </div>
             </div>
 
