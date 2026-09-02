@@ -1,0 +1,113 @@
+/* ============================================
+   Reutiliza los tokens de login.css / register.css.
+   Idéntico a addForm.css — mantener ambos sincronizados,
+   o mejor: mover este bloque a un common.css compartido
+   e importarlo en ambos componentes.
+   ============================================ */
+
+.gt-quick-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gt-quick-form__row {
+  display: flex;
+  gap: 10px;
+}
+
+.gt-quick-form__field {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.gt-quick-form__label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gt-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gt-quick-form__input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: var(--gt-radius-sm);
+  border: 1px solid var(--gt-line);
+  background-color: var(--gt-charcoal);
+  color: var(--gt-text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--gt-transition), background-color var(--gt-transition);
+
+  -moz-appearance: textfield;
+}
+
+.gt-quick-form__input::-webkit-outer-spin-button,
+.gt-quick-form__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.gt-quick-form__input::placeholder {
+  color: #565a51;
+}
+
+.gt-quick-form__input:focus {
+  border-color: var(--gt-green);
+  background-color: #1a1c17;
+}
+
+.gt-quick-form__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.gt-quick-form__btn {
+  flex: 1;
+  height: 36px;
+  border-radius: var(--gt-radius-sm);
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--gt-transition), transform 100ms ease;
+}
+
+.gt-quick-form__btn:active {
+  transform: scale(0.97);
+}
+
+.gt-quick-form__btn--primary {
+  background-color: var(--gt-green);
+  color: #08110c;
+}
+
+.gt-quick-form__btn--primary:hover {
+  background-color: var(--gt-green-dark);
+}
+
+.gt-quick-form__btn--ghost {
+  background-color: transparent;
+  border: 1px solid var(--gt-line);
+  color: var(--gt-text-muted);
+}
+
+.gt-quick-form__btn--ghost:hover {
+  color: var(--gt-text);
+  border-color: var(--gt-text-muted);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 420px) {
+  .gt-quick-form__row {
+    flex-direction: column;
+  }
+}

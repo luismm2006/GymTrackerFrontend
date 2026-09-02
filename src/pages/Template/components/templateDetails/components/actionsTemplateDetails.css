@@ -1,0 +1,263 @@
+/* ============================================
+   Reutiliza los tokens de login.css / register.css.
+   Si no los importas globalmente, copia el bloque
+   :root de esos archivos aquí también.
+   ============================================ */
+
+
+.gt-template-page {
+  list-style: none;
+  margin: 0;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  align-items: start;
+  background-color: var(--gt-black);
+}
+
+/* ---------- Tarjeta de ejercicio ---------- */
+.gt-exercise-card {
+  background-color: var(--gt-charcoal);
+  border: 1px solid var(--gt-line);
+  border-radius: var(--gt-radius);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: fit-content;
+}
+
+.gt-exercise-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: var(--gt-radius-sm);
+  background-color: var(--gt-charcoal-elevated);
+}
+
+.gt-exercise-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.gt-exercise-card__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.gt-exercise-card__title {
+  margin: 0;
+  color: var(--gt-text);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.gt-exercise-card__badge {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gt-green);
+  background-color: rgba(57, 226, 122, 0.1);
+  border: 1px solid rgba(57, 226, 122, 0.25);
+  border-radius: 999px;
+  padding: 3px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ---------- Botones de icono ---------- */
+.gt-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--gt-line);
+  border-radius: var(--gt-radius-sm);
+  background-color: #ffffff;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color var(--gt-transition), background-color var(--gt-transition), transform 100ms ease;
+}
+
+.gt-icon-btn:hover {
+  border-color: var(--gt-green);
+  transform: scale(1.04);
+}
+
+.gt-icon-btn--danger {
+  background-color: var(--gt-danger);
+  border-color: var(--gt-danger);
+}
+
+.gt-icon-btn--danger:hover {
+  background-color: #e14750;
+  border-color: #e14750;
+  transform: scale(1.04);
+}
+
+.gt-icon-btn__img {
+  width: 16px;
+  height: 16px;
+  opacity: 0.9;
+}
+
+/* ---------- Lista de series ---------- */
+.gt-series-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gt-series-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--gt-charcoal-elevated);
+  border: 1px solid var(--gt-line);
+  border-radius: var(--gt-radius-sm);
+  padding: 10px 12px;
+}
+
+.gt-series-row__info {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0;
+}
+
+.gt-series-row__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gt-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gt-series-row__data {
+  font-size: 14px;
+  color: var(--gt-text);
+  font-weight: 500;
+}
+
+.gt-series-row__actions {
+  display: flex;
+  gap: 8px;
+  align-self: flex-end;
+}
+
+/* ---------- Botón "añadir serie" ---------- */
+.gt-add-series-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  border: 1px dashed var(--gt-line);
+  border-radius: var(--gt-radius-sm);
+  background-color: transparent;
+  color: var(--gt-text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--gt-transition), color var(--gt-transition), background-color var(--gt-transition);
+}
+
+.gt-add-series-btn:hover {
+  border-color: var(--gt-green);
+  border-style: solid;
+  color: var(--gt-green);
+  background-color: rgba(57, 226, 122, 0.06);
+}
+
+.gt-add-series-btn .gt-icon-btn__img {
+  width: 14px;
+  height: 14px;
+}
+
+/* ---------- Paneles de confirmación (borrar) ---------- */
+.gt-confirm-panel {
+  background-color: rgba(255, 92, 102, 0.06);
+  border: 1px solid rgba(255, 92, 102, 0.25);
+  border-radius: var(--gt-radius-sm);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.gt-confirm-panel__text {
+  margin: 0;
+  font-size: 13px;
+  color: var(--gt-text);
+}
+
+.gt-confirm-panel__actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ---------- Botones genéricos ---------- */
+.gt-btn {
+  height: 34px;
+  padding: 0 16px;
+  border-radius: var(--gt-radius-sm);
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--gt-transition), transform 100ms ease;
+}
+
+.gt-btn:active {
+  transform: scale(0.97);
+}
+
+.gt-btn--danger {
+  background-color: var(--gt-danger);
+  color: #1a0a0b;
+}
+
+.gt-btn--danger:hover {
+  background-color: #e14750;
+}
+
+.gt-btn--ghost {
+  background-color: transparent;
+  border: 1px solid var(--gt-line);
+  color: var(--gt-text-muted);
+}
+
+.gt-btn--ghost:hover {
+  color: var(--gt-text);
+  border-color: var(--gt-text-muted);
+}
+
+/* ---------- Wrapper para EditForm / AddForm ---------- */
+.gt-inline-form {
+  background-color: var(--gt-charcoal-elevated);
+  border: 1px solid var(--gt-line);
+  border-radius: var(--gt-radius-sm);
+  padding: 12px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 600px) {
+  .gt-template-page {
+    grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .gt-exercise-img {
+    height: 140px;
+  }
+}

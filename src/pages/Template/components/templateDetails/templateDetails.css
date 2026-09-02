@@ -1,0 +1,164 @@
+/* ============================================
+   Reutiliza los tokens de login.css / register.css.
+   ============================================ */
+
+
+   
+.gt-page {
+  min-height: 100dvh;
+  box-sizing: border-box;
+  background-color: var(--gt-black);
+  padding: 10px 30px 10px 30px;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+/* ---------- Loading ---------- */
+.gt-page--loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gt-page__loading-text {
+  color: var(--gt-text-muted);
+  font-size: 15px;
+}
+
+/* ---------- Cabecera ---------- */
+.gt-page__header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.gt-back-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 20px;
+  background-color: var(--gt-charcoal-elevated);
+  border: 1px solid var(--gt-line);
+  border-radius: var(--gt-radius-sm);
+  color: var(--gt-text);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--gt-transition), background-color var(--gt-transition), transform 100ms ease;
+}
+
+.gt-back-btn:hover {
+  border-color: var(--gt-green);
+  background-color: rgba(57, 226, 122, 0.06);
+}
+
+.gt-back-btn:active {
+  transform: scale(0.97);
+}
+
+.gt-page__heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.gt-page__title {
+  margin: 0;
+  color: var(--gt-text);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.gt-page__badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gt-text-muted);
+  background-color: var(--gt-charcoal-elevated);
+  border: 1px solid var(--gt-line);
+  border-radius: 999px;
+  padding: 4px 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.gt-page__badge--official {
+  color: var(--gt-green);
+  background-color: rgba(57, 226, 122, 0.1);
+  border-color: rgba(57, 226, 122, 0.25);
+}
+
+/* ---------- Sección "Ejercicios" ---------- */
+.gt-page__section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.gt-page__subtitle {
+  margin: 0;
+  color: var(--gt-text);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.gt-page__empty {
+  color: var(--gt-text-muted);
+  font-size: 14px;
+  background-color: var(--gt-charcoal);
+  border: 1px solid var(--gt-line);
+  border-radius: var(--gt-radius);
+  padding: 24px;
+  text-align: center;
+}
+
+/* ---------- Botón primario (reutilizable) ---------- */
+.gt-btn--primary {
+  height: 46px;            /* antes 38px */
+  padding: 0 24px;         /* antes 0 18px */
+  border-radius: var(--gt-radius-sm);
+  border: none;
+  background-color: var(--gt-green);
+  color: #08110c;
+  font-size: 15px;         /* antes 13.5px */
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color var(--gt-transition), transform 100ms ease;
+}
+
+.gt-btn--primary:hover {
+  background-color: var(--gt-green-dark);
+}
+
+.gt-btn--primary:active {
+  transform: scale(0.97);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 600px) {
+  .gt-page {
+    padding: 20px 16px 40px;
+  }
+
+  .gt-page__title {
+    font-size: 22px;
+  }
+
+  .gt-page__section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .gt-btn--primary {
+    width: 100%;
+  }
+}

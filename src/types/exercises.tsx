@@ -5,5 +5,6 @@ export interface ExercisesResponse{
 	
 	muscleGroup : string;
 
+	urlImage : string;
 }
 

@@ -18,6 +18,9 @@ export default function ExercisesItem({ exercises, templateId }: Props) {
     }
     return (
         <div>
+            {exercises.urlImage && (
+                <img src={exercises.urlImage} alt={exercises.name} className="gt-exercise-img" />
+            )}
             <h3>{exercises.name}</h3>
             <div>
                 {exercises.muscleGroup}

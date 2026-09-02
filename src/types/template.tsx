@@ -14,6 +14,7 @@ export  interface TemplateDetails {
         exerciseId: number;
         exerciseName: string;
         muscleGroup: string;
+        urlImage: string;
         order: number;
         series:
             {
