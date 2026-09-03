@@ -1,7 +1,3 @@
-/* ============================================
-   Reutiliza los tokens de login.css / register.css.
-   ============================================ */
-
 .gt-quick-form form {
   display: flex;
   flex-direction: column;
@@ -30,8 +26,8 @@
 }
 
 .gt-quick-form__input {
-  width: 100%;             /* ← ocupa exactamente el ancho de su contenedor */
-  box-sizing: border-box;  /* ← el padding se descuenta del width, no se suma */
+  width: 100%;            
+  box-sizing: border-box; 
   height: 38px;
   padding: 0 12px;
   border-radius: var(--gt-radius-sm);
@@ -100,9 +96,7 @@
   border-color: var(--gt-text-muted);
 }
 
-/* ============================================
-   RESPONSIVE
-   ============================================ */
+
 @media (max-width: 420px) {
   .gt-quick-form__row {
     flex-direction: column;
