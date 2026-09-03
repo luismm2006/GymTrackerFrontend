@@ -33,17 +33,14 @@ export default function Login() {
     return (
         <div className="gt-login-auth">
 
-            {/* LOGO ARRIBA */}
             <div className="gt-login-brand-panel">
                 <div className="gt-login-logo-block">
                     <img src={gymLogo} alt="GymTracker logo" className="gt-login-logo-img" />
                 </div>
             </div>
 
-            {/* DIVISOR (solo desktop) */}
             <div className="gt-login-divider" />
 
-            {/* FORMULARIO ABAJO */}
             <div className="gt-login-form-panel">
                 <div className="gt-login-form-inner">
                     <h1 className="gt-login-title">Inicio de sesión</h1>

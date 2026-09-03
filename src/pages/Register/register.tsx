@@ -102,17 +102,13 @@ export default function Register() {
                             {errors.repeatPassword && <p className="gt-register-form-error">{errors.repeatPassword.message}</p>}
                         </div>
 
-                        <Link to="/login" className="gt-register-form-forgot">
-                            ¿Ya tienes una cuenta?
-                        </Link>
-
+                        
+                        <div className="gt-register-form-login">
+                            ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
+                        </div>
                         {error && <p className="gt-register-form-error gt-register-form-error-global">{error}</p>}
 
                         <button className="gt-register-form-submit" type="submit">Registrarse</button>
-
-                        <div className="gt-register-form-register">
-                            <Link to="/home">Volver</Link>
-                        </div>
 
                     </form>
                 </div>
