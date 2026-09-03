@@ -1,0 +1,97 @@
+/* ============================================
+   Reutiliza los tokens de login.css / register.css.
+   ============================================ */
+
+.gt-template-card {
+  background-color: var(--gt-charcoal);
+  border: 1px solid var(--gt-line);
+  border-radius: var(--gt-radius);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;        /* ← antes era "height: fit-content" */
+  transition: border-color var(--gt-transition);
+}
+
+.gt-template-card:hover {
+  border-color: #3a3c35;
+}
+
+.gt-template-card__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gt-template-card__title {
+  margin: 0;
+  color: var(--gt-text);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.gt-template-card__badge {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gt-text-muted);
+  background-color: var(--gt-charcoal-elevated);
+  border: 1px solid var(--gt-line);
+  border-radius: 999px;
+  padding: 3px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.gt-template-card__badge--official {
+  color: var(--gt-green);
+  background-color: rgba(57, 226, 122, 0.1);
+  border-color: rgba(57, 226, 122, 0.25);
+}
+
+.gt-template-card__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;    /* ← empuja los botones al fondo de la tarjeta */
+}
+
+.gt-template-card__btn {
+  flex: 1;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--gt-radius-sm);
+  border: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--gt-transition), border-color var(--gt-transition), transform 100ms ease;
+}
+
+.gt-template-card__btn:active {
+  transform: scale(0.97);
+}
+
+.gt-template-card__btn--primary {
+  background-color: var(--gt-green);
+  color: #08110c;
+}
+
+.gt-template-card__btn--primary:hover {
+  background-color: var(--gt-green-dark);
+}
+
+.gt-template-card__btn--ghost {
+  background-color: transparent;
+  border: 1px solid var(--gt-line);
+  color: var(--gt-text-muted);
+}
+
+.gt-template-card__btn--ghost:hover {
+  color: var(--gt-text);
+  border-color: var(--gt-text-muted);
+}

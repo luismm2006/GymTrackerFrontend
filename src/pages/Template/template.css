@@ -1,42 +1,80 @@
+/* ============================================
+   Reutiliza los tokens de login.css / register.css.
+   ============================================ */
+
 body {
   margin: 0;
   padding: 0;
+  background-color: var(--gt-black);
 }
 
 * {
   box-sizing: border-box;
 }
 
-.gt-page__heading {
+/* ---------- Fondo a pantalla completa ---------- */
+.gt-page {
+  width: 100%;
+  min-height: 100dvh;
+  background-color: var(--gt-black);
+  padding: 48px 40px 80px;
+}
+
+.gt-page__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ---------- Hero / cabecera ---------- */
+.gt-hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  padding-bottom: 28px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--gt-line);
+}
+
+.gt-hero__text {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
-.gt-page__subtitle-text {
+.gt-hero__title {
+  margin: 0;
+  color: var(--gt-text);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.gt-hero__subtitle {
   margin: 0;
   color: var(--gt-text-muted);
-  font-size: 14px;
+  font-size: 15px;
 }
 
-.gt-page__header {
+.gt-hero__actions {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
+  gap: 10px;
   flex-wrap: wrap;
-  margin-bottom: 24px;
 }
 
+/* ---------- Botón primario ---------- */
 .gt-btn--primary--link {
   display: inline-flex;
   align-items: center;
-  height: 44px;
-  padding: 0 22px;
+  justify-content: center;
+  height: 46px;
+  padding: 0 24px;
   border-radius: var(--gt-radius-sm);
   background-color: var(--gt-green);
   color: #08110c;
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
@@ -51,15 +89,65 @@ body {
   transform: scale(0.97);
 }
 
+/* ---------- Botón secundario (plantillas oficiales) ---------- */
+.gt-btn--ghost--link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  padding: 0 24px;
+  border-radius: var(--gt-radius-sm);
+  background-color: transparent;
+  border: 1.5px solid var(--gt-green);
+  color: var(--gt-green);
+  font-size: 14.5px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--gt-transition), color var(--gt-transition), transform 100ms ease;
+}
+
+.gt-btn--ghost--link:hover {
+  background-color: var(--gt-green);
+  color: #08110c;
+}
+
+.gt-btn--ghost--link:active {
+  transform: scale(0.97);
+}
+
+/* ---------- Toolbar: buscador + contador ---------- */
+.gt-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
 .gt-search-bar {
-  margin-bottom: 28px;
+  position: relative;
+  flex: 1;
+  min-width: 240px;
+  max-width: 420px;
+}
+
+.gt-search-bar__icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 17px;
+  height: 17px;
+  color: var(--gt-text-muted);
+  pointer-events: none;
 }
 
 .gt-search-bar__input {
   width: 100%;
-  max-width: 480px;
   height: 46px;
-  padding: 0 16px;
+  padding: 0 16px 0 40px;
   border-radius: var(--gt-radius-sm);
   border: 1px solid var(--gt-line);
   background-color: var(--gt-charcoal);
@@ -78,45 +166,87 @@ body {
   background-color: var(--gt-charcoal-elevated);
 }
 
+.gt-toolbar__count {
+  color: var(--gt-text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ---------- Grid de plantillas ---------- */
 .gt-template-grid {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 18px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .gt-template-grid__item {
-  height: fit-content;
+  height: 100%;
 }
 
-
-.gt-page__empty {
-  color: var(--gt-text-muted);
-  font-size: 14px;
-  background-color: var(--gt-charcoal);
-  border: 1px solid var(--gt-line);
-  border-radius: var(--gt-radius);
-  padding: 24px;
+/* ---------- Estado vacío ---------- */
+.gt-empty-state {
   text-align: center;
+  padding: 64px 24px;
+  background-color: var(--gt-charcoal);
+  border: 1px dashed var(--gt-line);
+  border-radius: var(--gt-radius);
 }
 
+.gt-empty-state__title {
+  margin: 0 0 6px;
+  color: var(--gt-text);
+  font-size: 16px;
+  font-weight: 600;
+}
 
-@media (max-width: 600px) {
-  .gt-page__header {
+.gt-empty-state__text {
+  margin: 0;
+  color: var(--gt-text-muted);
+  font-size: 13.5px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 700px) {
+  .gt-page {
+    padding: 28px 16px 60px;
+  }
+
+  .gt-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .gt-hero__title {
+    font-size: 24px;
+  }
+
+  .gt-hero__actions {
+    width: 100%;
+  }
+
+  .gt-btn--primary--link,
+  .gt-btn--ghost--link {
+    flex: 1;
+  }
+
+  .gt-toolbar {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .gt-btn--primary--link {
-    justify-content: center;
-    width: 100%;
+  .gt-search-bar {
+    max-width: 100%;
   }
 
-  .gt-search-bar__input {
-    max-width: 100%;
+  .gt-toolbar__count {
+    align-self: flex-end;
   }
 
   .gt-template-grid {

@@ -9,41 +9,59 @@ export default function Template() {
 
     return (
         <div className="gt-page">
+            <div className="gt-page__inner">
 
-            <div className="gt-page__header">
-                <div className="gt-page__heading">
-                    <h1 className="gt-page__title">Plantillas de ejercicios</h1>
-                    <p className="gt-page__subtitle-text">Elige una plantilla para empezar tu rutina.</p>
+                <header className="gt-hero">
+                    <div className="gt-hero__text">
+                        <h1 className="gt-hero__title">Plantillas de ejercicios</h1>
+                        <p className="gt-hero__subtitle">Elige una plantilla existente o crea la tuya para empezar tu rutina.</p>
+                    </div>
+
+                    <div className="gt-hero__actions">
+                        <Link to="/template/create" className="gt-btn--primary--link">
+                            + Crear nueva plantilla
+                        </Link>
+                        <Link to="/template/official" className="gt-btn--ghost--link">
+                            Plantillas oficiales
+                        </Link>
+                    </div>
+                </header>
+
+                <div className="gt-toolbar">
+                    <div className="gt-search-bar">
+                        <svg className="gt-search-bar__icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="9" cy="9" r="6.5" stroke="currentColor" strokeWidth="1.6"/>
+                            <path d="M18 18L14 14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+                        </svg>
+                        <input
+                            className="gt-search-bar__input"
+                            type="text"
+                            onChange={handleSearchTemplate}
+                            placeholder="Buscar plantilla de rutina..."
+                        />
+                    </div>
+
+                    <div className="gt-toolbar__count">
+                        {filteredTemplate.length} {filteredTemplate.length === 1 ? "plantilla" : "plantillas"}
+                    </div>
                 </div>
 
-                <Link to="/template/create" className="gt-btn--primary gt-btn--primary--link">
-                    + Crear nueva plantilla
-                </Link>
+                {filteredTemplate.length > 0 ? (
+                    <ul className="gt-template-grid">
+                        {filteredTemplate.map((template) => (
+                            <li key={template.id} className="gt-template-grid__item">
+                                <TemplateItem template={template} />
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <div className="gt-empty-state">
+                        <p className="gt-empty-state__title">No se encontraron plantillas</p>
+                        <p className="gt-empty-state__text">Prueba con otro nombre o crea una plantilla nueva.</p>
+                    </div>
+                )}
+
             </div>
-
-            <div className="gt-search-bar">
-                <input
-                    className="gt-search-bar__input"
-                    type="text"
-                    onChange={handleSearchTemplate}
-                    placeholder="Buscar plantilla de rutina..."
-                />
-            </div>
-
-            <h2 className="gt-page__subtitle">Lista de plantillas</h2>
-
-            {filteredTemplate.length > 0 ? (
-                <ul className="gt-template-grid">
-                    {filteredTemplate.map((template) => (
-                        <li key={template.id} className="gt-template-grid__item">
-                            <TemplateItem template={template} />
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <p className="gt-page__empty">No se encontraron plantillas.</p>
-            )}
-
         </div>
     );
 }
