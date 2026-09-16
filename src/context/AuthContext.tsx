@@ -9,6 +9,7 @@ interface AuthContextType {
     logout: () => void;
     loading: boolean;
     role: string | null;
+    userId: number | null;
 }
 
 interface AuthProviderProps {
@@ -29,6 +30,7 @@ export function AuthProvider({ children }: AuthProviderProps){
     const [token, setTokenState] = useState<string | null>(null);
     const [role, setRole] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
+    const [userId, setUserId] = useState< number | null>(null);
 
     const navigate = useNavigate();
 
@@ -47,7 +49,7 @@ export function AuthProvider({ children }: AuthProviderProps){
         const decoded = jwtDecode<JwtPayload>(newToken);
         setRole(decoded.role);
         localStorage.setItem("role", decoded.role);
-        
+        setUserId(decoded.id);
         } catch (err) {
         console.error("Error decodificando token:", err);
         }

@@ -1,8 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import type { Template } from "../../../types/template";
 import "./templateItem.css";
+import { postStartRoutine } from "../../../services/routinesService";
+import { useAuth } from "../../../context/AuthContext";
 
 export default function TemplateItem({ template }: { template: Template }) {
+    const {token, userId} = useAuth();
+    const navigate = useNavigate();
+    const handleClick = () => {
+        postStartRoutine(token!, template.id, userId!);
+        navigate("/routine/start")
+    }
+
     return (
         <div className="gt-template-card">
             <div className="gt-template-card__heading">
@@ -13,7 +22,7 @@ export default function TemplateItem({ template }: { template: Template }) {
             </div>
 
             <div className="gt-template-card__actions">
-                <button className="gt-template-card__btn gt-template-card__btn--primary">
+                <button onClick={() => handleClick()} className="gt-template-card__btn gt-template-card__btn--primary">
                     Empezar rutina
                 </button>
                 <Link to={`/template/${template.id}`} className="gt-template-card__btn gt-template-card__btn--ghost">

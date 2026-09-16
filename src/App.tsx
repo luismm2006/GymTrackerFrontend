@@ -9,6 +9,7 @@ import Template from './pages/Template/template';
 import TemplateCreate from './pages/Template/components/templateCreate'
 import TemplateDetails from './pages/Template/components/templateDetails/templateDetails'
 import Layout from './pages/Layout/layout'
+import Routine from './pages/Routine/routine'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
             <Route path="/template/create" element={<TemplateCreate />} />
             <Route path="/template/:id" element={<TemplateDetails />} />
             <Route path='/exercises/:id' element={<ExercisesList />}></Route>
+            <Route path='/routine/start' element={<Routine/>}></Route>
           </Route>
         </Routes>
       </AuthProvider>
