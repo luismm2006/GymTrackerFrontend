@@ -1,3 +1,4 @@
+import GTLoader from "../../../../components/gtloader";
 import { useTemplateDetails } from "../../hooks/useTemplateDetails";
 import ActionsTemplateDetails from "./components/actionsTemplateDetails";
 import "./templateDetails.css"
@@ -9,7 +10,7 @@ export default function TemplateDetails() {
     if (!template) {
         return (
             <div className="gt-page gt-page--loading">
-                <p className="gt-page__loading-text">Cargando...</p>
+                <div className="gt-page__loading-text"><GTLoader/></div>
             </div>
         );
     }

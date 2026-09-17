@@ -11,7 +11,7 @@ export default function TemplateItem({ template }: { template: Template }) {
         postStartRoutine(token!, template.id, userId!);
         navigate("/routine/start")
     }
-
+    
     return (
         <div className="gt-template-card">
             <div className="gt-template-card__heading">

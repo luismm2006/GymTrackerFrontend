@@ -50,7 +50,6 @@ export default function Layout() {
     return (
         <div className="gt-shell">
 
-            {/* ---------- Sidebar (desktop) ---------- */}
             <aside className="gt-sidebar">
                 <div className="gt-sidebar__logo">
                     <img src={gymLogo} alt="GymTracker" className="gt-sidebar__logo-img" />
@@ -84,12 +83,10 @@ export default function Layout() {
                 </button>
             </aside>
 
-            {/* ---------- Contenido de la página ---------- */}
             <main className="gt-shell__content">
                 <Outlet />
             </main>
 
-            {/* ---------- Bottom bar (móvil) ---------- */}
             <nav className="gt-bottom-nav">
                 {navItems.map((item) => (
                     <NavLink
