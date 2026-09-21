@@ -1,15 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import type { Template } from "../../../types/template";
 import "./templateItem.css";
-import { postStartRoutine } from "../../../services/routinesService";
-import { useAuth } from "../../../context/AuthContext";
+
 
 export default function TemplateItem({ template }: { template: Template }) {
-    const {token, userId} = useAuth();
     const navigate = useNavigate();
     const handleClick = () => {
-        postStartRoutine(token!, template.id, userId!);
-        navigate("/routine/start")
+        navigate('/routine/start/' + template.id)
     }
     
     return (

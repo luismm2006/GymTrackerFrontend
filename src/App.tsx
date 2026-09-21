@@ -26,7 +26,7 @@ function App() {
             <Route path="/template/create" element={<TemplateCreate />} />
             <Route path="/template/:id" element={<TemplateDetails />} />
             <Route path='/exercises/:id' element={<ExercisesList />}></Route>
-            <Route path='/routine/start' element={<Routine/>}></Route>
+            <Route path='/routine/start/:templateId' element={<Routine/>}></Route>
           </Route>
         </Routes>
       </AuthProvider>
