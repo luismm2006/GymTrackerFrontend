@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import type { TemplateDetails } from '../../types/template';
 import Gtloader from '../../components/gtloader';
+import { RoutineDetails } from './components/routineDetails';
 export default function Routine() {
     const {token} = useAuth();
     const {templateId} = useParams();
@@ -80,6 +81,10 @@ export default function Routine() {
                 </div>
             </div>
             
+            <RoutineDetails
+                templateRoutine={templateRoutine}
+            />
+
             
             <button onClick={handleClick}>Finalizar entrenamiento</button>
         </div>
