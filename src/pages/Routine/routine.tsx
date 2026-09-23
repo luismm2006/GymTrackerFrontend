@@ -83,6 +83,7 @@ export default function Routine() {
             
             <RoutineDetails
                 templateRoutine={templateRoutine}
+                setTemplateRoutine={setTemplateRoutine}
             />
 
             
