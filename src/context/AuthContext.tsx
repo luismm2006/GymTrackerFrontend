@@ -42,7 +42,16 @@ export function AuthProvider({ children }: AuthProviderProps){
         setLoading(false);
     }, []);
 
-    const setToken = (newToken: string) => {
+    const setToken = (newToken: string | null) => {
+        if (newToken === null) {
+            localStorage.removeItem("token");
+            localStorage.removeItem("role");
+            setTokenState(null);
+            setRole(null);
+            setUserId(null);
+            return;
+        }
+
         localStorage.setItem("token", newToken);
         setTokenState(newToken);
         try {
@@ -55,14 +64,11 @@ export function AuthProvider({ children }: AuthProviderProps){
         }
     };
     const logout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("role");
-        setTokenState(null);
-        setRole(null);
-        navigate("/home");
+        setToken(null);
+        navigate("/login");
     };
     return (
-        <AuthContext.Provider value={{ token, setToken, role, logout, loading }}>
+        <AuthContext.Provider value={{ token, setToken, role, userId, logout, loading }}>
             {children}
         </AuthContext.Provider>
     );

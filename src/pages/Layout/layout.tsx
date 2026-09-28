@@ -1,7 +1,8 @@
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "./layout.css";
 import gymLogo from "../../assets/GymTracker.png";
+import ActiveRoutineWidget from "../Routine/ActiveRoutineWidget";
 
 const navItems = [
     {
@@ -39,12 +40,10 @@ const navItems = [
 ];
 
 export default function Layout() {
-    const { setToken } = useAuth();
-    const navigate = useNavigate();
+    const { logout } = useAuth();
 
     const handleLogout = () => {
-        setToken(null);
-        navigate("/login");
+        logout();
     };
 
     return (
@@ -86,6 +85,8 @@ export default function Layout() {
             <main className="gt-shell__content">
                 <Outlet />
             </main>
+
+            <ActiveRoutineWidget />
 
             <nav className="gt-bottom-nav">
                 {navItems.map((item) => (

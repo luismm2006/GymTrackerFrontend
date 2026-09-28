@@ -1,0 +1,526 @@
+.gt-add-exercises {
+  min-height: 100dvh;
+  padding: 32px clamp(16px, 4vw, 48px) 80px;
+  background: var(--gt-black);
+  color: var(--gt-text);
+}
+
+.gt-add-exercises__inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gt-add-exercises__header {
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--gt-line);
+}
+
+.gt-add-exercises__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 42px;
+  margin-bottom: 28px;
+  padding: 0 13px;
+  border: 1px solid var(--gt-line);
+  border-radius: var(--gt-radius-sm);
+  background: var(--gt-charcoal);
+  color: var(--gt-text-muted);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--gt-transition), color var(--gt-transition), background var(--gt-transition);
+}
+
+.gt-add-exercises__back:hover {
+  border-color: var(--gt-green);
+  color: var(--gt-text);
+}
+
+.gt-add-exercises__back span {
+  color: var(--gt-green);
+  font-size: 18px;
+}
+
+.gt-add-exercises__back:focus-visible,
+.gt-exercise-browser button:focus-visible,
+.gt-exercises-state button:focus-visible,
+.gt-exercise-option button:focus-visible {
+  outline: 2px solid var(--gt-green);
+  outline-offset: 3px;
+}
+
+.gt-add-exercises__eyebrow {
+  margin: 0 0 12px;
+  color: var(--gt-green);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.gt-add-exercises__eyebrow span {
+  padding: 0 7px;
+  color: var(--gt-text-muted);
+}
+
+.gt-add-exercises__title-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.gt-add-exercises__title-row h1 {
+  margin: 0;
+  color: var(--gt-text);
+  font-size: 34px;
+  font-weight: 750;
+}
+
+.gt-add-exercises__title-row p {
+  margin: 8px 0 0;
+  color: var(--gt-text-muted);
+  font-size: 15px;
+}
+
+.gt-add-exercises__count {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex: 0 0 auto;
+  color: var(--gt-text-muted);
+  font-size: 13px;
+}
+
+.gt-add-exercises__count strong {
+  color: var(--gt-green);
+  font-size: 28px;
+  font-variant-numeric: tabular-nums;
+}
+
+.gt-exercise-browser {
+  display: grid;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--gt-line);
+}
+
+.gt-exercise-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: min(100%, 520px);
+  min-height: 50px;
+  border: 1px solid var(--gt-line);
+  border-radius: var(--gt-radius-sm);
+  background: var(--gt-charcoal);
+  transition: border-color var(--gt-transition), background var(--gt-transition);
+}
+
+.gt-exercise-search:focus-within {
+  border-color: var(--gt-green);
+  background: var(--gt-charcoal-elevated);
+}
+
+.gt-exercise-search svg {
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: var(--gt-text-muted);
+  stroke-linecap: round;
+  stroke-width: 1.8;
+}
+
+.gt-exercise-search input {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--gt-text);
+  font: inherit;
+  font-size: 15px;
+}
+
+.gt-exercise-search input::placeholder {
+  color: var(--gt-text-muted);
+  opacity: 0.8;
+}
+
+.gt-exercise-search input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+.gt-exercise-filters {
+  display: grid;
+  gap: 10px;
+}
+
+.gt-exercise-filters__label {
+  color: var(--gt-text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.gt-exercise-filters__options {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 2px 2px 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gt-line) transparent;
+}
+
+.gt-exercise-filter {
+  min-height: 38px;
+  padding: 0 14px;
+  flex: 0 0 auto;
+  border: 1px solid var(--gt-line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--gt-text-muted);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--gt-transition), background var(--gt-transition), color var(--gt-transition);
+}
+
+.gt-exercise-filter:hover {
+  border-color: var(--gt-text-muted);
+  color: var(--gt-text);
+}
+
+.gt-exercise-filter--active {
+  border-color: var(--gt-green);
+  background: rgba(57, 226, 122, 0.12);
+  color: var(--gt-green);
+}
+
+.gt-exercise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 18px;
+  margin: 0;
+  padding: 24px 0 0;
+  list-style: none;
+}
+
+.gt-exercise-grid > li {
+  min-width: 0;
+}
+
+.gt-exercise-option {
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--gt-line);
+  border-radius: var(--gt-radius-sm);
+  background: var(--gt-charcoal);
+  transition: border-color var(--gt-transition), transform var(--gt-transition), box-shadow var(--gt-transition);
+}
+
+.gt-exercise-option:hover {
+  transform: translateY(-3px);
+  border-color: rgba(57, 226, 122, 0.55);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.25);
+}
+
+.gt-exercise-option__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: var(--gt-charcoal-elevated);
+}
+
+.gt-exercise-option__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 220ms ease;
+}
+
+.gt-exercise-option:hover .gt-exercise-option__media img {
+  transform: scale(1.035);
+}
+
+.gt-exercise-option__placeholder {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  color: var(--gt-green);
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.gt-exercise-option__tag {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  max-width: calc(100% - 24px);
+  overflow: hidden;
+  padding: 6px 10px;
+  border: 1px solid rgba(57, 226, 122, 0.35);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.78);
+  color: var(--gt-green);
+  font-size: 11px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.gt-exercise-option__body {
+  display: flex;
+  min-height: 134px;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 16px;
+}
+
+.gt-exercise-option__name {
+  margin: 0 0 16px;
+  color: var(--gt-text);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.gt-exercise-option__error {
+  margin: 0 0 10px;
+  color: var(--gt-danger);
+  font-size: 13px;
+}
+
+.gt-exercise-option__add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: auto;
+  padding: 0 14px;
+  border: 1px solid var(--gt-green);
+  border-radius: var(--gt-radius-sm);
+  background: var(--gt-green);
+  color: #08110c;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--gt-transition), border-color var(--gt-transition), color var(--gt-transition);
+}
+
+.gt-exercise-option__add svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+
+.gt-exercise-option__add:hover:not(:disabled) {
+  border-color: var(--gt-green-dark);
+  background: var(--gt-green-dark);
+}
+
+.gt-exercise-option__add:disabled {
+  border-color: var(--gt-line);
+  background: var(--gt-charcoal-elevated);
+  color: var(--gt-text-muted);
+  cursor: default;
+}
+
+.gt-exercise-option__add--added:disabled {
+  border-color: rgba(57, 226, 122, 0.35);
+  color: var(--gt-green);
+}
+
+.gt-exercise-option__status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.gt-exercises-state {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  padding: 52px 20px;
+  border: 1px dashed var(--gt-line);
+  border-radius: var(--gt-radius-sm);
+  color: var(--gt-text-muted);
+  text-align: center;
+}
+
+.gt-exercises-state__mark {
+  display: grid;
+  width: 44px;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid var(--gt-line);
+  border-radius: 50%;
+  color: var(--gt-green);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.gt-exercises-state h2,
+.gt-exercises-state p {
+  margin: 0;
+}
+
+.gt-exercises-state h2 {
+  color: var(--gt-text);
+  font-size: 19px;
+}
+
+.gt-exercises-state p {
+  max-width: 420px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.gt-exercises-state--error {
+  border-color: rgba(255, 92, 102, 0.45);
+  color: var(--gt-danger);
+}
+
+.gt-exercises-state button {
+  min-height: 40px;
+  margin-top: 6px;
+  padding: 0 15px;
+  border: 1px solid var(--gt-line);
+  border-radius: var(--gt-radius-sm);
+  background: var(--gt-charcoal-elevated);
+  color: var(--gt-text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.gt-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 600px) {
+  .gt-add-exercises {
+    padding: 20px 16px 36px;
+  }
+
+  .gt-add-exercises__header {
+    padding-bottom: 20px;
+  }
+
+  .gt-add-exercises__back {
+    margin-bottom: 22px;
+  }
+
+  .gt-add-exercises__title-row {
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .gt-add-exercises__title-row h1 {
+    font-size: 28px;
+  }
+
+  .gt-add-exercises__title-row p {
+    max-width: 270px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .gt-add-exercises__count {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0;
+    padding-top: 3px;
+  }
+
+  .gt-add-exercises__count strong {
+    font-size: 24px;
+  }
+
+  .gt-exercise-browser {
+    gap: 16px;
+    padding: 18px 0;
+  }
+
+  .gt-exercise-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding-top: 18px;
+  }
+
+  .gt-exercise-option {
+    display: grid;
+    grid-template-columns: minmax(100px, 0.8fr) minmax(0, 1.2fr);
+    min-height: 142px;
+  }
+
+  .gt-exercise-option__media {
+    min-height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .gt-exercise-option__placeholder {
+    font-size: 32px;
+  }
+
+  .gt-exercise-option__tag {
+    bottom: 8px;
+    left: 8px;
+    max-width: calc(100% - 16px);
+    padding: 5px 7px;
+    font-size: 9px;
+  }
+
+  .gt-exercise-option__body {
+    min-height: 142px;
+    justify-content: space-between;
+    padding: 13px;
+  }
+
+  .gt-exercise-option__name {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .gt-exercise-option {
+    grid-template-columns: minmax(82px, 0.72fr) minmax(0, 1.28fr);
+  }
+
+  .gt-exercise-option__body {
+    padding: 11px;
+  }
+
+  .gt-exercise-option__add {
+    font-size: 13px;
+  }
+}

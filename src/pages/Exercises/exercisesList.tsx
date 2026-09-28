@@ -1,70 +1,164 @@
 import { useEffect, useState } from "react";
-import { getAllExercises, getAllMuscleGroup } from "../../services/exercisesService";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { getAllExercises, getAllMuscleGroup } from "../../services/exercisesService";
+import { getTemplateById } from "../../services/templateService";
 import type { ExercisesResponse } from "../../types/exercises";
 import ExercisesItem from "./components/exercisesItem";
-import { useParams } from "react-router-dom";
+import "./exercises.css";
 
-export default function ExercisesList(){
-    const {token} = useAuth();
-    const {id} = useParams();
+export default function ExercisesList() {
+    const { token } = useAuth();
+    const { id } = useParams();
+    const location = useLocation();
+    const navigate = useNavigate();
     const templateId = Number(id);
     const [exercises, setExercises] = useState<ExercisesResponse[]>([]);
-    const [muscleGroupType, setMuscleGroupType] = useState<string[]>([])
-    const [filteredExercises, setFilteredExercises] = useState<ExercisesResponse[]>([]);
+    const [muscleGroupType, setMuscleGroupType] = useState<string[]>([]);
+    const [routineName, setRoutineName] = useState<string | null>(null);
+    const [search, setSearch] = useState("");
+    const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [loadError, setLoadError] = useState<string | null>(null);
+    const [reloadKey, setReloadKey] = useState(0);
+
     useEffect(() => {
-        if(!token) return;
-        const fetch = async () => {
-            const res = await getAllExercises(token!);
-            setExercises(res);
-            setFilteredExercises(res);
-            const resMusc = await getAllMuscleGroup(token!);
-            setMuscleGroupType(resMusc);
+        if (!token) {
+            setLoadError("Inicia sesión para consultar los ejercicios.");
+            setLoading(false);
+            return;
         }
-        fetch();
-    }, [token])
 
-    const handleSearchExercises = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const searchTerm = event.target.value.toLowerCase();
-        const filtered = exercises.filter((ex) => ex.name.toLowerCase().includes(searchTerm));
-        setFilteredExercises(filtered);
+        let isCurrent = true;
+        const loadExercises = async () => {
+            setLoading(true);
+            setLoadError(null);
+            try {
+                const [exerciseData, groupData, templateData] = await Promise.all([
+                    getAllExercises(token),
+                    getAllMuscleGroup(token),
+                    getTemplateById(token, templateId),
+                ]);
+                if (!isCurrent) return;
+                setExercises(exerciseData);
+                setMuscleGroupType(groupData);
+                setRoutineName(templateData.name);
+            } catch (error) {
+                if (!isCurrent) return;
+                setLoadError(error instanceof Error ? error.message : "No se pudieron cargar los ejercicios.");
+            } finally {
+                if (isCurrent) setLoading(false);
+            }
+        };
+
+        void loadExercises();
+        return () => {
+            isCurrent = false;
+        };
+    }, [templateId, token, reloadKey]);
+
+    const normalizedSearch = search.trim().toLocaleLowerCase();
+    const filteredExercises = exercises.filter((exercise) => {
+        const matchesSearch = exercise.name.toLocaleLowerCase().includes(normalizedSearch);
+        const matchesGroup = !selectedGroup || exercise.muscleGroup === selectedGroup;
+        return matchesSearch && matchesGroup;
+    });
+
+    const handleBackToTemplate = () => {
+        if (location.state?.fromTemplateDetails === true) {
+            navigate(-1);
+            return;
+        }
+        navigate(`/template/${templateId}`, { replace: true });
     };
 
-    const filterByGroup = (group: string) => {
-        const filtered = exercises.filter(ex => ex.muscleGroup === group);
-        setFilteredExercises(filtered);
-    };
-
-    return(
-        <div>
-            <h1>Ejercicios</h1>
-            <p>Esta es la página de ejercicios.</p>
-            <div>
-                <input type="text" onChange={handleSearchExercises} placeholder="Buscar ejercicio..." />
-                <div>
-                    <button onClick={() => setFilteredExercises(exercises)}>
-                        Todos
+    return (
+        <main className="gt-add-exercises">
+            <div className="gt-add-exercises__inner">
+                <header className="gt-add-exercises__header">
+                    <button className="gt-add-exercises__back" type="button" onClick={handleBackToTemplate}>
+                        <span aria-hidden="true">←</span>
+                        Volver a plantilla
                     </button>
-                    {muscleGroupType.length > 0 ? (
-                        muscleGroupType.map((mct, index) => (
-                            <button key={index} onClick={() => filterByGroup(mct)}>{mct}</button>
-                        ))
-                    ): (<p>No se encontraron grupos musculares</p>)}
-                </div>
+                    <p className="gt-add-exercises__eyebrow">
+                        Constructor de rutina <span aria-hidden="true">/</span> {routineName ?? "Tu rutina"}
+                    </p>
+                    <div className="gt-add-exercises__title-row">
+                        <div>
+                            <h1>Añadir ejercicios</h1>
+                            <p>Elige movimientos para completar tu próxima sesión.</p>
+                        </div>
+                        <div className="gt-add-exercises__count" aria-live="polite">
+                            <strong>{filteredExercises.length}</strong>
+                            <span>{filteredExercises.length === 1 ? "resultado" : "resultados"}</span>
+                        </div>
+                    </div>
+                </header>
 
-                <h2>Lista de ejercicios</h2>
-                <ul>
-                    {filteredExercises.length > 0 ? (
-                        filteredExercises.map((exercises) => (
-                            <li key={exercises.id}>
-                                <ExercisesItem exercises={exercises} templateId={templateId} />
+                <section className="gt-exercise-browser" aria-label="Buscar y filtrar ejercicios">
+                    <label className="gt-exercise-search">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="10.8" cy="10.8" r="6.8" />
+                            <path d="m16 16 4.3 4.3" />
+                        </svg>
+                        <span className="gt-visually-hidden">Buscar ejercicios por nombre</span>
+                        <input
+                            type="search"
+                            value={search}
+                            onChange={(event) => setSearch(event.currentTarget.value)}
+                            placeholder="Buscar por nombre..."
+                        />
+                    </label>
+
+                    <div className="gt-exercise-filters">
+                        <span className="gt-exercise-filters__label">Grupo muscular</span>
+                        <div className="gt-exercise-filters__options" role="group" aria-label="Filtrar por grupo muscular">
+                            <button
+                                type="button"
+                                className={`gt-exercise-filter ${selectedGroup === null ? "gt-exercise-filter--active" : ""}`}
+                                aria-pressed={selectedGroup === null}
+                                onClick={() => setSelectedGroup(null)}
+                            >
+                                Todos
+                            </button>
+                            {muscleGroupType.map((group) => (
+                                <button
+                                    key={group}
+                                    type="button"
+                                    className={`gt-exercise-filter ${selectedGroup === group ? "gt-exercise-filter--active" : ""}`}
+                                    aria-pressed={selectedGroup === group}
+                                    onClick={() => setSelectedGroup((current) => current === group ? null : group)}
+                                >
+                                    {group}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {loading ? (
+                    <div className="gt-exercises-state" role="status">Cargando ejercicios...</div>
+                ) : loadError ? (
+                    <div className="gt-exercises-state gt-exercises-state--error" role="alert">
+                        <p>{loadError}</p>
+                        <button type="button" onClick={() => setReloadKey((current) => current + 1)}>Reintentar</button>
+                    </div>
+                ) : filteredExercises.length > 0 ? (
+                    <ul className="gt-exercise-grid" aria-label="Resultados de ejercicios">
+                        {filteredExercises.map((exercise) => (
+                            <li key={exercise.id}>
+                                <ExercisesItem exercises={exercise} templateId={templateId} />
                             </li>
-                        ))
-                    ) : (
-                        <p>No se encontraron ejercicios.</p>
-                    )}
-                </ul>
+                        ))}
+                    </ul>
+                ) : (
+                    <div className="gt-exercises-state">
+                        <span className="gt-exercises-state__mark" aria-hidden="true">0</span>
+                        <h2>{exercises.length ? "No hay coincidencias" : "No hay ejercicios disponibles"}</h2>
+                        <p>{exercises.length ? "Prueba con otro nombre o grupo muscular." : "No se encontraron ejercicios para esta plantilla."}</p>
+                    </div>
+                )}
             </div>
-        </div>
+        </main>
     );
 }

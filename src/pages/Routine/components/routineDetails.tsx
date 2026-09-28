@@ -1,36 +1,22 @@
-import { useState } from "react";
 import type { TemplateDetails } from "../../../types/template";
 import AddRoutineForm from "./addRoutineForm";
-import { useAuth } from "../../../context/AuthContext";
 import deleteImage from "../../../assets/deleteImage.svg";
-import { addSeriesToExercise, deleteSeries, getTemplateById } from "../../../services/templateService";
+import { useRoutineActionsForms } from "../hooks/useRoutineActionsForms";
 interface RoutineDetails{
     templateRoutine : TemplateDetails;
     setTemplateRoutine : (templateRoutine : TemplateDetails) => void;
 }
 
 export function RoutineDetails({templateRoutine, setTemplateRoutine} : RoutineDetails){
-    const [notes, setNotes] = useState<string>("");
-    const {token} = useAuth();
-    const [action, setAction] = useState
-    <{type: "add" | "edit" | "delete" | null, exerciseId: number | null, seriesId: number | null, initialWeight: number | string | null, initialReps: number | string | null}>
-    ({type: null, exerciseId: null, seriesId: null, initialWeight: 0, initialReps: 0});
-
-    const handleSaveAdd = async (exerciseId: number, routineId: number, weight: number, reps: number) => {
-        await addSeriesToExercise(token!, routineId, exerciseId, Number(weight), Number(reps));   
-        const updated = await getTemplateById(token!, routineId);
-        setTemplateRoutine(updated);
-        setAction({ type: null, exerciseId: null, seriesId: null, initialWeight: null, initialReps: null });
-    }
-    const handleSaveDelete = async (exerciseId: number, routineId: number, seriesId: number) => {
-            await deleteSeries(token!, routineId, exerciseId, seriesId);
-            const updated = await getTemplateById(token!, routineId);
-            setTemplateRoutine(updated);
-            setAction({ type: null, exerciseId: null, seriesId: null, initialWeight: null, initialReps: null });
-    };
-    const handleCancel = async () => {
-        setAction({ type: null, exerciseId: null, seriesId: null, initialWeight: null, initialReps: null })
-    }
+    const {
+        action,
+        setAction,
+        notes,
+        handleNoteChange,
+        handleSaveAdd,
+        handleSaveDelete,
+        handleCancel,
+    } = useRoutineActionsForms(setTemplateRoutine);
     return(
         <ul className="gt-template-page">
             {templateRoutine.exercises.map((ex) => (
@@ -46,20 +32,29 @@ export function RoutineDetails({templateRoutine, setTemplateRoutine} : RoutineDe
                             <span className="gt-exercise-card__badge">{ex.muscleGroup}</span>
                         </div>
                     </div>
-                    <div>
-                        <h3>Agrega notas aquí:</h3>
-                        <input type="text"/>
+                    <div className="gt-routine__notes">
+                        <label htmlFor={`routine-notes-${ex.id}`}>Notas de este ejercicio</label>
+                        <input
+                            id={`routine-notes-${ex.id}`}
+                            type="text"
+                            value={notes[ex.id] ?? ""}
+                            onChange={(event) => handleNoteChange(ex.id, event.target.value)}
+                        />
                     </div>
                     <div className="gt-series-list">
                         {ex.series.map((s, index) => (
                             <div key={s.id} className="gt-series-row">
-                                <p className="gt-series-row__info">
+                                <div className="gt-series-row__info">
                                     <span className="gt-series-row__label">Serie {index + 1}</span>
-                                    <label htmlFor="">Repeticiones: </label>
-                                    <input type="text" value={s.reps}/>
-                                    <label htmlFor="">Peso: </label>
-                                    <input type="text" value={s.weight}/>
-                                </p>
+                                    <div className="gt-series-row__field">
+                                        <label htmlFor={`routine-${ex.id}-series-${s.id}-reps`}>Repeticiones</label>
+                                        <input id={`routine-${ex.id}-series-${s.id}-reps`} type="number" value={s.reps} readOnly />
+                                    </div>
+                                    <div className="gt-series-row__field">
+                                        <label htmlFor={`routine-${ex.id}-series-${s.id}-weight`}>Peso (kg)</label>
+                                        <input id={`routine-${ex.id}-series-${s.id}-weight`} type="number" value={s.weight} readOnly />
+                                    </div>
+                                </div>
                                 <button
                                     className="gt-icon-btn gt-icon-btn--danger"
                                     onClick={() => setAction({ type: "delete", exerciseId: ex.id, seriesId: s.id, initialWeight: null, initialReps: null })}

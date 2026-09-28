@@ -34,7 +34,7 @@ export default function TemplateDetails() {
                 <h2 className="gt-page__subtitle">Ejercicios</h2>
                 <button
                     className="gt-btn gt-btn--primary"
-                    onClick={() => navigate("/exercises/" + template.id)}
+                    onClick={() => navigate("/exercises/" + template.id, { state: { fromTemplateDetails: true } })}
                 >
                     + Añadir ejercicio
                 </button>
