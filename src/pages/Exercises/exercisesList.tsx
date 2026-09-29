@@ -5,6 +5,7 @@ import { getAllExercises, getAllMuscleGroup } from "../../services/exercisesServ
 import { getTemplateById } from "../../services/templateService";
 import type { ExercisesResponse } from "../../types/exercises";
 import ExercisesItem from "./components/exercisesItem";
+import Gtloader from "../../components/gtloader";
 import "./exercises.css";
 
 export default function ExercisesList() {
@@ -137,7 +138,9 @@ export default function ExercisesList() {
                 </section>
 
                 {loading ? (
-                    <div className="gt-exercises-state" role="status">Cargando ejercicios...</div>
+                    <div className="gt-exercises-state" role="status" aria-live="polite">
+                        <Gtloader />
+                    </div>
                 ) : loadError ? (
                     <div className="gt-exercises-state gt-exercises-state--error" role="alert">
                         <p>{loadError}</p>

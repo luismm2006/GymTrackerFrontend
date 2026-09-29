@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useState, type ReactNode } from "react";
 import {jwtDecode} from "jwt-decode";
 import type { JwtPayload } from "../types/auth";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,6 @@ interface AuthContextType {
     token: string | null;
     setToken: (token: string | null) => void;
     logout: () => void;
-    loading: boolean;
     role: string | null;
     userId: number | null;
 }
@@ -18,6 +17,18 @@ interface AuthProviderProps {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
+function getStoredAuth() {
+    const token = localStorage.getItem("token");
+    if (!token) return { token: null, role: null, userId: null };
+
+    try {
+        const decoded = jwtDecode<JwtPayload>(token);
+        return { token, role: decoded.role, userId: decoded.id };
+    } catch {
+        return { token, role: localStorage.getItem("role"), userId: null };
+    }
+}
+
 export function useAuth(){
     const context = useContext(AuthContext);
     if(!context){
@@ -27,20 +38,12 @@ export function useAuth(){
 }
 
 export function AuthProvider({ children }: AuthProviderProps){ 
-    const [token, setTokenState] = useState<string | null>(null);
-    const [role, setRole] = useState<string | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [userId, setUserId] = useState< number | null>(null);
+    const [initialAuth] = useState(getStoredAuth);
+    const [token, setTokenState] = useState<string | null>(initialAuth.token);
+    const [role, setRole] = useState<string | null>(initialAuth.role);
+    const [userId, setUserId] = useState<number | null>(initialAuth.userId);
 
     const navigate = useNavigate();
-
-    useEffect(() => {
-        const savedToken = localStorage.getItem("token");
-        if(savedToken){
-            setTokenState(savedToken);
-        }
-        setLoading(false);
-    }, []);
 
     const setToken = (newToken: string | null) => {
         if (newToken === null) {
@@ -68,7 +71,7 @@ export function AuthProvider({ children }: AuthProviderProps){
         navigate("/login");
     };
     return (
-        <AuthContext.Provider value={{ token, setToken, role, userId, logout, loading }}>
+        <AuthContext.Provider value={{ token, setToken, role, userId, logout }}>
             {children}
         </AuthContext.Provider>
     );

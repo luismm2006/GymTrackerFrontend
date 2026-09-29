@@ -10,6 +10,7 @@ import TemplateCreate from './pages/Template/components/templateCreate'
 import TemplateDetails from './pages/Template/components/templateDetails/templateDetails'
 import Layout from './pages/Layout/layout'
 import Routine from './pages/Routine/routine'
+import ProtectedRoute from './protected/protectedRoute'
 
 function App() {
 
@@ -20,11 +21,13 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route element={<Layout />}>
-            <Route path="/home" element={<Home />} />
-            <Route path="/template" element={<Template />} />
-            <Route path="/template/create" element={<TemplateCreate />} />
-            <Route path="/template/:id" element={<TemplateDetails />} />
+          <Route element={<ProtectedRoute />}>
+            <Route element={<Layout />}>
+              <Route path="/home" element={<Home />} />
+              <Route path="/template" element={<Template />} />
+              <Route path="/template/create" element={<TemplateCreate />} />
+              <Route path="/template/:id" element={<TemplateDetails />} />
+            </Route>
             <Route path='/exercises/:id' element={<ExercisesList />}></Route>
             <Route path='/routine/start/:templateId' element={<Routine/>}></Route>
           </Route>

@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import TemplateItem from "./components/templateItem";
 import type { Template } from "../../types/template";
 import { useTemplate } from './hooks/useTemplate';
+import Gtloader from "../../components/gtloader";
 import "./template.css";
 
 export default function Template() {
-    const {filteredTemplate, handleSearchTemplate} = useTemplate();
+    const {filteredTemplate, handleSearchTemplate, loading} = useTemplate();
 
     return (
         <div className="gt-page">
@@ -42,11 +43,15 @@ export default function Template() {
                     </div>
 
                     <div className="gt-toolbar__count">
-                        {filteredTemplate.length} {filteredTemplate.length === 1 ? "plantilla" : "plantillas"}
+                        {loading ? "Cargando..." : `${filteredTemplate.length} ${filteredTemplate.length === 1 ? "plantilla" : "plantillas"}`}
                     </div>
                 </div>
 
-                {filteredTemplate.length > 0 ? (
+                {loading ? (
+                    <div className="gt-page__loading-text" role="status" aria-live="polite">
+                        <Gtloader />
+                    </div>
+                ) : filteredTemplate.length > 0 ? (
                     <ul className="gt-template-grid">
                         {filteredTemplate.map((template) => (
                             <li key={template.id} className="gt-template-grid__item">

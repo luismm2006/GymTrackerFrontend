@@ -7,14 +7,28 @@ export const useTemplate = () => {
     const { token } = useAuth();
     const [template, setTemplate] = useState<Template[]>([]);
     const [filteredTemplate, setFilteredTemplate] = useState<Template[]>([]);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
-        if (!token) return;
-        const fetch = async () => {
-            const templateData = await getTemplate(token!);
-            setTemplate(templateData);
-            setFilteredTemplate(templateData);
+        if (!token) {
+            setLoading(false);
+            return;
         }
-        fetch();
+        let isCurrent = true;
+        setLoading(true);
+        const fetch = async () => {
+            try {
+                const templateData = await getTemplate(token);
+                if (!isCurrent) return;
+                setTemplate(templateData);
+                setFilteredTemplate(templateData);
+            } finally {
+                if (isCurrent) setLoading(false);
+            }
+        }
+        void fetch();
+        return () => {
+            isCurrent = false;
+        };
     }, [token]);
     const handleSearchTemplate = (event: React.ChangeEvent<HTMLInputElement>) => {
         const searchTerm = event.target.value.toLowerCase();
@@ -23,6 +37,7 @@ export const useTemplate = () => {
     };
     return{
         filteredTemplate,
-        handleSearchTemplate
+        handleSearchTemplate,
+        loading
     }
 }
